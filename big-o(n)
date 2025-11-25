@@ -1,0 +1,85 @@
+Example 1 
+
+names = ["Nandini", "Nila", "Gowtham", "Saravana"]
+
+for name in names:          # goes through each item one by one
+    print(name)             # prints it
+
+
+
+Example 2
+
+import time
+
+# small list
+small_list = list(range(1000))     # 1K items
+
+# big list
+big_list = list(range(1000000))    # 1 Million items
+
+
+# function that loops through the list
+def process_list(data):
+    total = 0
+    for item in data:      # O(n) loop
+        total += item
+    return total
+
+
+# measure small list time
+start = time.time()
+process_list(small_list)
+end = time.time()
+print("Time for 1,000 items:", end - start, "seconds")
+
+
+# measure big list time
+start = time.time()
+process_list(big_list)
+end = time.time()
+print("Time for 1,000,000 items:", end - start, "seconds")
+
+
+
+Example 3
+
+import time
+import matplotlib.pyplot as plt
+
+# -----------------------------
+# O(n) function
+# -----------------------------
+def process_list(data):
+    total = 0
+    for item in data:   # O(n)
+        total += item
+    return total
+
+# -----------------------------
+# Measure time for different input sizes
+# -----------------------------
+sizes = [1000, 5000, 10000, 50000, 100000]   # input sizes
+times = []
+
+for n in sizes:
+    data = list(range(n))
+
+    start = time.time()
+    process_list(data)
+    end = time.time()
+
+    times.append(end - start)
+    print(f"Time for {n} items: {end - start} seconds")
+
+# -----------------------------
+# Plot graph (O(n))
+# -----------------------------
+plt.figure(figsize=(7,4))
+
+plt.plot(sizes, times, marker='o')
+plt.title("O(n) Time Complexity – Linear Growth")
+plt.xlabel("Input Size (n)")
+plt.ylabel("Time Taken (seconds)")
+plt.grid(True)
+
+plt.show()
